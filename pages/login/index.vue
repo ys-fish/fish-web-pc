@@ -3,7 +3,7 @@
     <div style="height: 64px"></div>
     <div class="loginBox">
       <div class="loginBoxS">
-        <div class="loginBoxLogin">
+        <div class="loginBoxLogin" :class="{ loginActivie: isBtn }">
           <div class="loginTxt">
             <div class="loginTxtTitle">登录</div>
             <div class="loginTxtPs">
@@ -58,8 +58,74 @@
             </div>
           </v-form>
         </div>
-        <div class="loginBoxRegister"></div>
-        <div class="switchBtn">
+        <div class="loginBoxRegister" :class="{ registerActivie: isBtn }">
+          <div class="loginTxt">
+            <div class="loginTxtTitle">注册</div>
+            <div class="loginTxtPs">
+              Hi,欢迎来到文心图鉴，欢迎您成为社区的一份子，注册完成即可解锁所有权限
+            </div>
+          </div>
+
+          <v-form @submit.prevent>
+            <div class="loginFrom">
+              <div class="loginFromItem">
+                <div class="loginFromItemTitle">用户名</div>
+                <v-text-field
+                  color="white"
+                  v-model="ak"
+                  density="compact"
+                  variant="outlined"
+                  style="font-size: 12px"
+                  :rules="[
+                    (value) => {
+                      if (value) return true;
+
+                      return 'You must enter a first name.';
+                    },
+                  ]"
+                ></v-text-field>
+              </div>
+
+              <div class="loginFromItem">
+                <div class="loginFromItemTitle">密码</div>
+                <v-text-field
+                  color="white"
+                  v-model="ak"
+                  density="compact"
+                  variant="outlined"
+                  style="font-size: 12px"
+                  :rules="[
+                    (value) => {
+                      if (value) return true;
+
+                      return 'You must enter a first name.';
+                    },
+                  ]"
+                ></v-text-field>
+              </div>
+              <div class="loginFromItem">
+                <div class="loginFromItemTitle">确认密码</div>
+                <v-text-field
+                  color="white"
+                  v-model="ak"
+                  density="compact"
+                  variant="outlined"
+                  style="font-size: 12px"
+                  :rules="[
+                    (value) => {
+                      if (value) return true;
+
+                      return 'You must enter a first name.';
+                    },
+                  ]"
+                ></v-text-field>
+              </div>
+
+              <v-btn block>注册</v-btn>
+            </div>
+          </v-form>
+        </div>
+        <div class="switchBtn" @click="isBtn = !isBtn">
           <v-icon>mdi-swap-horizontal-bold</v-icon>
         </div>
         <div class="loginBoxImage">
@@ -72,6 +138,8 @@
 
 <script lang="ts" setup>
 const ak = ref<string>();
+
+const isBtn = ref<boolean>(false);
 </script>
 
 <style scoped lang="scss">
@@ -91,7 +159,12 @@ const ak = ref<string>();
     border-radius: 10px;
     border: 1px #80683c solid;
     z-index: 9999;
+    .loginActivie{
+      right: 50% !important;
+      opacity: 0 !important;
+    }
     .loginBoxLogin {
+      opacity: 1;
       position: absolute;
       width: 50%;
       right: 0;
@@ -99,6 +172,7 @@ const ak = ref<string>();
       height: 600px;
       box-sizing: border-box;
       padding: 30px;
+      transition: .3s;
       .loginTxt {
         color: white;
         .loginTxtTitle {
@@ -122,7 +196,49 @@ const ak = ref<string>();
           display: flex;
           justify-content: space-between;
           font-size: 12px;
-          
+
+          padding-bottom: 20px;
+        }
+      }
+    }
+    .registerActivie {
+      left: 50% !important;
+      opacity: 1 !important;
+    }
+    .loginBoxRegister {
+      position: absolute;
+      opacity: 0;
+      width: 50%;
+      left: 0;
+      top: 0;
+      height: 600px;
+      box-sizing: border-box;
+      padding: 30px;
+      transition: 0.3s;
+      .loginTxt {
+        color: white;
+        .loginTxtTitle {
+          font-size: 20px;
+        }
+        .loginTxtPs {
+          font-size: 12px;
+          margin-top: 10px;
+        }
+      }
+
+      .loginFrom {
+        margin-top: 20px;
+        .loginFromItem {
+          .loginFromItemTitle {
+            font-size: 12px;
+            padding-bottom: 5px;
+          }
+        }
+        .loginFromBox {
+          display: flex;
+          justify-content: space-between;
+          font-size: 12px;
+
           padding-bottom: 20px;
         }
       }
