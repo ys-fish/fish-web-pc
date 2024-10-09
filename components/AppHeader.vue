@@ -62,7 +62,10 @@
           <v-icon @click="isSearch = false">mdi-close</v-icon>
         </div>
       </div>
-      <div class="headerSearchInputBox" :style="{ opacity: isSearch ? 1 : 0 }">
+      <div
+        class="headerSearchInputBox"
+        :style="{ opacity: isSearch ? 1 : 0, zIndex: isSearch ? 99999 : -1 }"
+      >
         <div class="headerSearchInputBoxTitle">快速链接</div>
         <div class="headerSearchInputBoxItem">
           <div
@@ -148,12 +151,13 @@ if (route.fullPath != "/") {
   color: white !important;
   .headerSearchInputBox {
     background-color: #0f0f0f !important;
+    position: relative;
   }
 }
 .headerBox {
   background-color: rgba(0, 0, 0, 0.3);
   position: fixed;
-  z-index: 1000;
+  z-index: 1;
   color: white;
   top: 0;
   transition: 0.3s;

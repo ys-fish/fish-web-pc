@@ -38,7 +38,7 @@
               <div class="fishItemBottomTitle1">蓝鳍红神农虾虎</div>
               <div class="fishItemBottomTitle2">大型虾虎</div>
             </div>
-            <div class="fishItemBottomBtn">
+            <div class="fishItemBottomBtn" @click="$router.push('/gallery/fid/1')">
               <div>探索</div>
               <v-icon>mdi-pan-right</v-icon>
             </div>
@@ -120,7 +120,7 @@ const items = ref([
       z-index: 111;
       &:hover {
         will-change: transform;
-        transform: scale(1.18);
+        transform: scale(1.1);
         border: 1px #927345 solid;
         .fishItemBottom {
           bottom: 0px;
